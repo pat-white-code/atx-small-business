@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import axios from 'axios'
+import Navigation from './containers/Navigation';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './Router'
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
-function App() { 
-  const handleTest = () => {
-    axios.get('/test').then(res => console.log(res))
-  }
+function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <button onClick={handleTest}>
-          test server
-        </button>
-        <h2>Updated!</h2>
-        <h3>More updates!</h3>
-        <a>
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Navigation />
+        <Router />
+      </BrowserRouter>
+    </Provider>
+
   );
 }
 
